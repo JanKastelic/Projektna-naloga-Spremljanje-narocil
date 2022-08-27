@@ -3,7 +3,10 @@ from model import Stanje, Kategorija, Storitev
 
 IME_DATOTEKE = "stanje.json"
 
-stanje = Stanje.preberi_iz_datoteke(IME_DATOTEKE)
+try:
+    stanje = Stanje.preberi_iz_datoteke(IME_DATOTEKE)
+except FileNotFoundError:
+    stanje = Stanje(kategorije=[])
 
 def preberi_stevilo():
     while True:
@@ -30,6 +33,8 @@ def prikaz_kategorije(kategorija):
     cez_rok = kategorija.stevilo_cez_rok()
     if odprta:
         return f"{kategorija.ime_kategorije.upper()} ({cez_rok} / {odprta})"
+    elif cez_rok and zakljucena:
+        return f"{kategorija.ime_kategorije.upper()} ({cez_rok} / {zakljucena}"
     else:
         return f"{kategorija.ime_kategorije.upper()} ({zakljucena})"
 
