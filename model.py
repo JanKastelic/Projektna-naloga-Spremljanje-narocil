@@ -81,9 +81,10 @@ class Kategorija:
 
 
 class Storitev:
-    def __init__(self, opis_storitve, datum_sprejema, rok, stanje=False):
+    def __init__(self, opis_storitve, datum_sprejema, oseba, rok, stanje=False):
         self.opis_storitve = opis_storitve
         self.datum_sprejema = datum_sprejema
+        self.oseba = oseba
         self.rok = rok
         self.stanje = stanje
 
@@ -98,8 +99,9 @@ class Storitev:
         return {
             "opis_storitve": self.opis_storitve,
             "datum_sprejema": self.datum_sprejema.isoformat() if self.rok else date.today().isoformat(),
+            "oseba": self.oseba,
             "rok": self.rok.isoformat() if self.rok else None,
-            "stanje": self.stanje
+            "stanje": self.stanje,
         }   
 
     @staticmethod
@@ -107,6 +109,7 @@ class Storitev:
         return Storitev(
             slovar["opis_storitve"],
             date.fromisoformat(slovar["datum_sprejema"]) if slovar["datum_sprejema"] else None,
+            slovar["oseba"],
             date.fromisoformat(slovar["rok"]) if slovar["rok"] else None,
-            slovar["stanje"]
+            slovar["stanje"],
         )
