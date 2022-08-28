@@ -20,7 +20,7 @@
             <span class="icon">
               <i class="fas fa-ballot-check"></i>
             </span>
-            <strong>Spremljanje naročil</strong>
+            <strong>SPREMLJANJE NAROČIL</strong>
           </span>
           <div class="buttons">
               <a class="button is-primary" href="/">
@@ -79,4 +79,14 @@
       {{!base}}
     </section>
   </body>
+  <footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      Aplikacija: <strong>Spremljanje naročil</strong>. Avtor: <strong>Jan Kastelic</strong>.
+    </p>
+    <p>
+      Projektna naloga pri predmetu <strong>Uvod v programiranje</strong> na programu Pedagoška matematika, Fakulteta za matematiko in fiziko, Univerza v Ljubljani.
+    </p>
+  </div>
+</footer>
 </html>
