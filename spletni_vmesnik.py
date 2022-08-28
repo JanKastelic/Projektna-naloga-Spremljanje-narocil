@@ -6,13 +6,13 @@ IME_DATOTEKE = "stanje.json"
 
 SIFRIRNI_KLJUC = "To je poseben šifrirni ključ"
 
-try:
-    stanje = Stanje.preberi_iz_datoteke(IME_DATOTEKE)
-except FileNotFoundError:
-    stanje = Stanje(kategorije=[])
+# try:
+#     stanje = Stanje.preberi_iz_datoteke(IME_DATOTEKE)
+# except FileNotFoundError:
+#     stanje = Stanje(kategorije=[])
 
 def url_kategorije(id_kategorije):
-    return f"/kategorija/{id_kategorije}/"
+    return f"/zaposleni/{id_kategorije}/"
 
 def ime_uporabnikove_datoteke(uporabnisko_ime):
     return f"stanja_uporabnikov/{uporabnisko_ime}.json"
@@ -77,30 +77,30 @@ def navodila_get():
 def navodila_post():
     bottle.redirect("/")
     
-@bottle.get("/kategorija/<id_kategorije:int>/")
+@bottle.get("/zaposleni/<id_kategorije:int>/")
 def prikazi_kategorijo(id_kategorije):
     stanje = stanje_trenutnega_uporabnika()
     kategorija = stanje.kategorije[id_kategorije]
     return bottle.template(
-        "kategorija.tpl",
+        "zaposleni.tpl",
         kategorije=stanje.kategorije,
         aktualna_kategorija=kategorija,
         id_aktualne_kategorije=id_kategorije,
     )
     
-@bottle.get("/dodaj-kategorijo/")
-def dodaj_kategorijo_get():
-    return bottle.template("dodaj_kategorijo.tpl", napake={}, polja={})
+@bottle.get("/dodaj-zaposlenega/")
+def dodaj_zaposlenega_get():
+    return bottle.template("dodaj_zaposlenega.tpl", napake={}, polja={})
 
-@bottle.post("/dodaj-kategorijo/")
-def dodaj_kategorijo_post():
+@bottle.post("/dodaj-zaposlenega/")
+def dodaj_zaposlenega_post():
     stanje = stanje_trenutnega_uporabnika()
     ime_kategorije = bottle.request.forms.getunicode("ime_kategorije")
-    kategorija = Kategorija(ime_kategorije, opravila=[])
+    kategorija = Kategorija(ime_kategorije, storitve=[])
     napake = stanje.preverjanje_kategorije(kategorija)
     if napake:
         polja = {"ime_kategorije": ime_kategorije}
-        return bottle.template("dodaj_kategorijo.tpl", napake=napake, polja=polja)
+        return bottle.template("dodaj_zaposlenega.tpl", napake=napake, polja=polja)
     else:
         id_kategorije = stanje.dodaj_kategorijo(kategorija)
         shrani_stanje_trenutnega_uporabnika(stanje)
