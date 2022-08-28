@@ -51,7 +51,7 @@
                 <strong>Navodila</strong>
               </a>
               <a class="button is-light" href="/registracija/">
-                <strong>Registriraj se</strong>
+                <strong>Registriracija</strong>
               </a>
               % if defined('uporabnik'):
               <form method="POST" action="/odjava/">
@@ -61,7 +61,7 @@
               </form>
               % else:
               <a class="button is-light" href="/prijava/">
-                <strong>Prijavi se</strong>
+                <strong>Prijava</strong>
               </a>
               % end
             </div>
