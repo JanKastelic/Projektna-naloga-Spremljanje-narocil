@@ -2,14 +2,9 @@ import bottle
 from datetime import date
 from model import Stanje, Kategorija, Storitev
 
-IME_DATOTEKE = "stanje.json"
+IME_DATOTEKE = "primer-stanja.json"
 
-SIFRIRNI_KLJUC = "To je poseben šifrirni ključ"
-
-# try:
-#     stanje = Stanje.preberi_iz_datoteke(IME_DATOTEKE)
-# except FileNotFoundError:
-#     stanje = Stanje(kategorije=[])
+SIFRIRNI_KLJUC = "šifrirni ključ"
 
 def url_kategorije(id_kategorije):
     return f"/zaposleni/{id_kategorije}/"
@@ -27,7 +22,7 @@ def stanje_trenutnega_uporabnika():
     try:
         stanje = Stanje.preberi_iz_datoteke(ime_datoteke)
     except FileNotFoundError:
-        stanje = Stanje.preberi_iz_datoteke("stanje.json")
+        stanje = Stanje.preberi_iz_datoteke(IME_DATOTEKE)
         stanje.shrani_v_datoteko(ime_datoteke)
     return stanje
 
@@ -62,7 +57,15 @@ def prijava_post():
         bottle.response.set_cookie("uporabnisko_ime", uporabnisko_ime, path="/", secret=SIFRIRNI_KLJUC)
         bottle.redirect("/")
     else:
-        return "Napaka ob prijavi"
+        bottle.redirect("/prijava/napaka/")
+    
+@bottle.get("/prijava/napaka/")
+def prijava_napaka_get():
+    return bottle.template("prijava_napaka.tpl")
+
+@bottle.post("/prijava/napaka/")
+def prijava_napaka_post():
+    bottle.redirect("/prijava/")
 
 @bottle.post("/odjava/")
 def odjava_post():
@@ -114,7 +117,7 @@ def dodaj_storitev(id_kategorije):
     if bottle.request.forms["datum_sprejema"]:
         datum_sprejema = date.fromisoformat(bottle.request.forms["datum_sprejema"])
     else:
-        datum_sprejema = date.fromisoformat(date.today())
+        datum_sprejema = date.today()
     oseba = bottle.request.forms.getunicode("oseba")
     if bottle.request.forms["rok"]:
         rok = date.fromisoformat(bottle.request.forms["rok"])
