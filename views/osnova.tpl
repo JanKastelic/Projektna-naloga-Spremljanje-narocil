@@ -56,7 +56,7 @@
               % if defined('uporabnik'):
               <form method="POST" action="/odjava/">
                 <button class="button is-light">
-                  Odjavi se
+                  <strong>Odjava</strong>
                 </button>
               </form>
               % else:
