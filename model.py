@@ -13,7 +13,7 @@ class Stanje:
     def preverjanje_kategorije(self, kategorija):
         for obsotjeca_kategorija in self.kategorije:
             if obsotjeca_kategorija.ime_kategorije == kategorija.ime_kategorije:
-                return {"ime": "Ta kategorija že obstaja."}
+                return {"ime": "Ta zaposleni ima že svoj seznam."}
 
     def v_slovar(self):
         return {
