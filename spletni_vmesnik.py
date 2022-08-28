@@ -69,6 +69,14 @@ def odjava_post():
     bottle.response.delete_cookie("uporabnisko_ime", path="/")
     bottle.redirect("/")
     
+@bottle.get("/navodila/")
+def navodila_get():
+    return bottle.template("navodila.tpl")
+
+@bottle.post("/navodila")
+def navodila_post():
+    bottle.redirect("/")
+    
 @bottle.get("/kategorija/<id_kategorije:int>/")
 def prikazi_kategorijo(id_kategorije):
     stanje = stanje_trenutnega_uporabnika()
