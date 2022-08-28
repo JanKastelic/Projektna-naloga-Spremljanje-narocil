@@ -22,6 +22,11 @@
             </span>
             <strong>Spremljanje naročil</strong>
           </span>
+          <div class="buttons">
+              <a class="button is-primary" href="/">
+                <strong>Domov</strong>
+              </a>
+          </div>
         </div>
         <div class="navbar-start">
           % if defined('izbrani_zavihek'):
@@ -42,7 +47,10 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary" href="/registracija/">
+              <a class="button is-light" href="/navodila/">
+                <strong>Navodila</strong>
+              </a>
+              <a class="button is-light" href="/registracija/">
                 <strong>Registriraj se</strong>
               </a>
               % if defined('uporabnik'):
@@ -53,7 +61,7 @@
               </form>
               % else:
               <a class="button is-light" href="/prijava/">
-                Prijavi se
+                <strong>Prijavi se</strong>
               </a>
               % end
             </div>
