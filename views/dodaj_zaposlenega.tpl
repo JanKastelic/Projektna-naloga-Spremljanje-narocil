@@ -3,9 +3,9 @@
     <div class="field">
         <label class="label">Ime</label>
         <div class="control has-icons-left has-icons-right">
-            <input class="input" name="ime" type="text" placeholder="ime kategorije" value="{{polja.get('ime', '')}}">
+            <input class="input" name="ime_kategorije" type="text" placeholder="Ime zaposlenega" value="{{polja.get('ime_kategorije', '')}}">
             <span class="icon is-small is-left">
-                <i class="fas fa-clipboard-check"></i>
+                <i class="fas fa-user"></i>
             </span>
         </div>
         % if "ime" in napake:
