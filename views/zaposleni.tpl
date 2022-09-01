@@ -12,7 +12,7 @@
             % else:
             <a href="/zaposleni/{{id_kategorije}}/" class="button" name="id_kategorije" value="{{id_kategorije}}">
                 {{kategorija.ime_kategorije}}
-                <span class="tag is-rounded">{{kategorija.stevilo_odprtih()}}</span>
+                <span class="tag is-rounded">{{kategorija.stevilo_vseh()}}</span>
             </a>
             % end
             % end
@@ -48,7 +48,7 @@
                 </td>                
                 <td>
                     <div class="control has-icons-left">
-                        <input class="input is-small" type="text" name="datum_sprejema" placeholder="Datum sprejema">
+                        <input class="input is-small" type="text" name="datum_sprejema" placeholder="Datum sprejema (YYYY-MM-DD)">
                         <span class="icon is-small is-left">
                             <i class="far fa-calendar-alt"></i>
                         </span>
@@ -64,7 +64,7 @@
                 </td>  
                 <td>
                     <div class="control has-icons-left">
-                        <input class="input is-small" type="text" name="rok" placeholder="rok">
+                        <input class="input is-small" type="text" name="rok" placeholder="Rok (YYYY-MM-DD)">
                         <span class="icon is-small is-left">
                             <i class="far fa-calendar-alt"></i>
                         </span>

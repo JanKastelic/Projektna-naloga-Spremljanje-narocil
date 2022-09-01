@@ -18,7 +18,7 @@
         <div class="navbar-brand">
           <span class="navbar-item">
             <span class="icon">
-              <i class="fas fa-ballot-check"></i>
+              <i class="fas fa-book"></i>
             </span>
             <strong>SPREMLJANJE NAROČIL</strong>
           </span>
@@ -51,7 +51,7 @@
                 <strong>Navodila</strong>
               </a>
               <a class="button is-light" href="/registracija/">
-                <strong>Registriracija</strong>
+                <strong>Registracija</strong>
               </a>
               % if defined('uporabnik'):
               <form method="POST" action="/odjava/">
