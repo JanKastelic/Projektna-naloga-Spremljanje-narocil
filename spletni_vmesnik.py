@@ -2,7 +2,7 @@ import bottle
 from datetime import date
 from model import Stanje, Kategorija, Storitev
 
-IME_DATOTEKE = "primer-stanja.json"
+IME_DATOTEKE = "stanja_uporabnikov/primer-stanja.json"
 
 SIFRIRNI_KLJUC = "šifrirni ključ"
 

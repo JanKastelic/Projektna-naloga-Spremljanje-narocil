@@ -1,7 +1,7 @@
 from datetime import date
 from model import Stanje, Kategorija, Storitev
 
-IME_DATOTEKE = "primer-stanja.json"
+IME_DATOTEKE = "stanja_uporabnikov/primer-stanja.json"
 
 try:
     stanje = Stanje.preberi_iz_datoteke(IME_DATOTEKE)
