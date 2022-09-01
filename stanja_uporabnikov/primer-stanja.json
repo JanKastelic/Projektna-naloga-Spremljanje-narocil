@@ -1,34 +1,42 @@
 {
     "zaposleni": [
         {
-            "ime_zaposlenega": "Anton Novak",
+            "ime_zaposlenega": "Mirjam Novak",
             "storitve": [
                 {
-                    "opis_storitve": "ommara",
-                    "datum_sprejema": "2022-08-26",
-                    "oseba": "Jan Kastelic",
+                    "opis_storitve": "Izdelava vhodnih vrat",
+                    "datum_sprejema": "2022-06-26",
+                    "oseba": "Mirjam Novak",
                     "rok": "2022-09-09",
                     "stanje": true
                 },
                 {
-                    "opis_storitve": "miza",
-                    "datum_sprejema": "2022-08-26",
-                    "oseba": "Jan Kastelic",
-                    "rok": "2021-08-09",
+                    "opis_storitve": "Izdelava stavbnega pohištva po ponudbi št. 23745",
+                    "datum_sprejema": "2022-08-23",
+                    "oseba": "Mirjam Novak",
+                    "rok": "2023-08-09",
                     "stanje": false
                 },
                 {
-                    "opis_storitve": "vrata",
-                    "datum_sprejema": "2022-09-01",
-                    "oseba": "jan",
+                    "opis_storitve": "Izdelava in montaža nadstrešnice",
+                    "datum_sprejema": "2022-08-01",
+                    "oseba": "Saša Novak",
                     "rok": null,
                     "stanje": false
                 }
             ]
         },
         {
-            "ime_zaposlenega": "Miha BOrelli",
-            "storitve": []
+            "ime_zaposlenega": "Saša Novak",
+            "storitve": [
+                {
+                    "opis_storitve": "Vgradnja vhodnih vrat",
+                    "datum_sprejema": "2022-06-26",
+                    "oseba": "Saša Novak",
+                    "rok": "2022-09-09",
+                    "stanje": true
+                }
+            ]
         }
     ]
 }
