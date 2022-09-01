@@ -1,7 +1,7 @@
 from datetime import date
 from model import Stanje, Kategorija, Storitev
 
-IME_DATOTEKE = "stanje.json"
+IME_DATOTEKE = "primer-stanja.json"
 
 try:
     stanje = Stanje.preberi_iz_datoteke(IME_DATOTEKE)
@@ -28,31 +28,22 @@ def izberi_moznost(moznosti):
             print(f"Vnesti morate število med 1 in {len(moznosti)}.")
 
 def prikaz_kategorije(kategorija):
-    odprta = kategorija.stevilo_odprtih()
-    zakljucena = kategorija.stevilo_zakljucenih()
-    cez_rok = kategorija.stevilo_cez_rok()
-    if odprta:
-        return f"{kategorija.ime_kategorije.upper()} ({cez_rok} / {odprta})"
-    elif cez_rok and zakljucena:
-        return f"{kategorija.ime_kategorije.upper()} ({cez_rok} / {zakljucena}"
-    else:
-        return f"{kategorija.ime_kategorije.upper()} ({zakljucena})"
+    vse = kategorija.stevilo_vseh()
+    return f"{kategorija.ime_kategorije.upper()} ({vse})"
 
 def prikaz_storitve(storitev):
     if storitev.stanje:
-        return f"ZAKLJUČENO: {storitev.opis_storitve}"
-    elif storitev.cez_rok():
-        return f"ODPRTO: {storitev.opis_storitve} -- ČEZ ROK: {storitev.rok}"
+        return f"°ZAKLJUČENO: {storitev.opis_storitve}, naročilo sprejel/-a {storitev.oseba}"
     elif storitev.rok:
-        return f"ODPRTO: {storitev.opis_storitve} -- ROK: {storitev.rok}"
+        return f"°ODPRTO: {storitev.opis_storitve}, rok: {storitev.rok}, naročilo sprejel/-a {storitev.oseba}"
     else:
-        return f"ODPRTO: {storitev.opis_storitve}"
+        return f"°ODPRTO: {storitev.opis_storitve}, naročilo sprejel/-a {storitev.oseba}"
 
 def zacetni_pozdrav():
-    print("Podravljeni v aplikaciji za evidenco poteka dela pri storitvah.")
+    print("Podravljeni v aplikaciji za evidenco naročil.")
 
 def izberi_kategorijo(stanje):
-    print("Izberite želeno kategorijo:")
+    print("Izberite želenega zaposlenega:")
     return izberi_moznost(
         [
             (kategorija, prikaz_kategorije(kategorija)) for kategorija in stanje.kategorije
@@ -66,7 +57,7 @@ def izberi_storitev(kategorija):
     )
 
 def dodaj_kategorijo():
-    print("Vnesite podatke o novi kategoriji.")
+    print("Vnesite podatke o zaposlenem.")
     ime_kategorije = input("Ime: >")
     nova_kategorija = Kategorija(ime_kategorije, [])
     stanje.dodaj_kategorijo(nova_kategorija)
@@ -80,12 +71,13 @@ def dodaj_storitev():
         datum_sprejema = date.fromisoformat(datum_sprejema)
     else:
         datum_sprejema = date.today()
+    oseba = input("Oseba, ki je sprejela naročilo: >")
     rok = input("Rok (YYYY-MM-DD): >")
     if rok.strip():
         rok = date.fromisoformat(rok)
     else:
         rok = None
-    nova_storitev = Storitev(opis, datum_sprejema, rok)
+    nova_storitev = Storitev(opis, datum_sprejema, oseba, rok)
     kategorija.dodaj_storitev(nova_storitev)
 
 def zakljuci_storitev():
@@ -99,7 +91,7 @@ def izpisi_trenutno_stanje():
         for storitev in kategorija.storitve:
             print(f"{prikaz_storitve(storitev)}:")
     if not stanje.kategorije:
-        print("Definirana ni še nobena kategorija. Ustvarite novo kategorijo.")
+        print("Vnešen ni še nihče od zaposlenih. Dodajte njegovo ime.")
 
 def zakljuci_izvajanje():
     stanje.shrani_v_datoteko(IME_DATOTEKE)
@@ -110,10 +102,10 @@ def ponudi_moznosti():
     print("Izberite želeno dejanje:")
     izbrano_dejanje = izberi_moznost(
         [
-            (dodaj_kategorijo, "dodajanje nove kategorije"),
+            (dodaj_kategorijo, "dodajanje novega zaposlenega"),
             (dodaj_storitev, "dodajanje nove storitve"),
             (zakljuci_storitev, "zaključi storitev"),
-            (zakljuci_izvajanje, "zapri program")
+            (zakljuci_izvajanje, "shrani in zapri program")
         ]
     )
     izbrano_dejanje()
