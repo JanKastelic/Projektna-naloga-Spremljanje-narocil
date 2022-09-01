@@ -6,7 +6,7 @@
             % for id_zaposlenega, zaposleni in enumerate(kategorije):
             <a href="/zaposleni/{{id_zaposlenega}}/" class="button" name="id_zaposlenega" value="{{id_zaposlenega}}">
                 {{zaposleni.ime_kategorije}}
-                <span class="tag is-rounded">{{zaposleni.stevilo_odprtih()}}</span>
+                <span class="tag is-rounded">{{zaposleni.stevilo_vseh()}}</span>
             </a>
             % end
         </div>

@@ -7,7 +7,7 @@
             % if kategorija == aktualna_kategorija:
             <a class="button is-primary is-selected" name="id_kategorije" value="{{id_kategorije}}">
                 {{kategorija.ime_kategorije}}
-                <span class="tag is-rounded">{{kategorija.stevilo_odprtih()}}</span>
+                <span class="tag is-rounded">{{kategorija.stevilo_vseh()}}</span>
             </a>
             % else:
             <a href="/zaposleni/{{id_kategorije}}/" class="button" name="id_kategorije" value="{{id_kategorije}}">
