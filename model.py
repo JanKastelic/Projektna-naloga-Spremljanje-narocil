@@ -17,12 +17,12 @@ class Stanje:
 
     def v_slovar(self):
         return {
-            "kategorije": [kategorija.v_slovar() for kategorija in self.kategorije],
+            "zaposleni": [kategorija.v_slovar() for kategorija in self.kategorije],
             }
 
     @staticmethod
     def iz_slovarja(slovar):
-        return Stanje([Kategorija.iz_slovarja(kategorije_slovarja) for kategorije_slovarja in slovar["kategorije"]])
+        return Stanje([Kategorija.iz_slovarja(kategorije_slovarja) for kategorije_slovarja in slovar["zaposleni"]])
 
     def shrani_v_datoteko(self, ime_datoteke):
         with open(ime_datoteke, mode="w") as datoteka:
@@ -44,6 +44,9 @@ class Kategorija:
 
     def dodaj_storitev(self, storitev):
         self.storitve.append(storitev)
+
+    def stevilo_vseh(self):
+        return len(self.storitve)
 
     def stevilo_odprtih(self):
         odprtih = 0
@@ -68,14 +71,14 @@ class Kategorija:
 
     def v_slovar(self):
         return {
-            "ime_kategorije": self.ime_kategorije,
+            "ime_zaposlenega": self.ime_kategorije,
             "storitve": [storitev.v_slovar() for storitev in self.storitve],
         }
 
     @staticmethod
     def iz_slovarja(slovar):
         return Kategorija(
-            slovar["ime_kategorije"], 
+            slovar["ime_zaposlenega"], 
             [Storitev.iz_slovarja(storitve_slovarja) for storitve_slovarja in slovar["storitve"]]
         )
 
